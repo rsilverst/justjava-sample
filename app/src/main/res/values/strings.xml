@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="initial_quantity">0</string>
+</resources>
