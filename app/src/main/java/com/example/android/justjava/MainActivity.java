@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 
 /**
- * This app displays an order form to order coffee.
+ * This app displays an order form to order coffee. This is just a test of branching.
  */
 public class MainActivity extends AppCompatActivity {
 
