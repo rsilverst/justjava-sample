@@ -14,7 +14,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    int unitPrice = 5;
+    int unitPrice = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      *
-     * @param price
+     * @param price the price of the coffee
      * @return summary
      */
     private String createOrderSummary(int price) {
-        String summary = "Name: Kaptain Kunal" + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank you!";
-        return summary;
+        return "Name: Kaptain Kunal" + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank you!";
     }
     /**
      *
@@ -64,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     private int calculatePrice() {
-        int price = quantity * unitPrice;
-        return price;
+        return quantity * unitPrice;
     }
     /**
      * This method displays the given quantity value on the screen.
