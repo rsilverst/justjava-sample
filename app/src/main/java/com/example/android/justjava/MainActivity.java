@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increment(View view) {
         quantity++;
+        TextView errorMessage2 = (TextView) findViewById(R.id.null_order_error);
+        errorMessage2.setVisibility(View.INVISIBLE);
         displayQuantity(quantity);
     }
 
@@ -44,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the decrement button is clicked.
      */
     public void decrement(View view) {
-        quantity--;
+        if (quantity > 0) {
+            quantity--;
+        }
         displayQuantity(quantity);
     }
 
@@ -52,29 +56,37 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        String priceMessage;
         String customerName = getName();
-        int price = calculatePrice();
         CheckBox whippedCreamCheckbox = (CheckBox) findViewById(R.id.whipped_cream);
         boolean hasWhippedCream = whippedCreamCheckbox.isChecked();
         CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate);
         boolean hasChocolate = chocolateCheckbox.isChecked();
-        String priceMessage = createOrderSummary(customerName, price, hasWhippedCream, hasChocolate);
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
+        if (quantity > 0) {
+            priceMessage = createOrderSummary(customerName, price, hasWhippedCream, hasChocolate);
+        } else {
+            priceMessage = "You have not ordered any coffees!";
+        }
         displayMessage(priceMessage);
     }
 
     /**
-     *
-     * @param price the price of the coffee
+     * @param price           the price of the coffee
      * @param hasWhippedCream says whether the coffee should have whipped cream or not
-     * @param hasChocolate says whether the coffee should have chocolate or not
+     * @param hasChocolate    says whether the coffee should have chocolate or not
      * @return summary
      */
     private String createOrderSummary(String name, int price, boolean hasWhippedCream, boolean hasChocolate) {
 
         String addWhippedCream = "No";
         String addChocolate = "No";
-        if (hasWhippedCream == true) addWhippedCream = "Yes";
-        if (hasChocolate == true) addChocolate = "Yes";
+        if (hasWhippedCream) {
+            addWhippedCream = "Yes";
+        }
+        if (hasChocolate) {
+            addChocolate = "Yes";
+        }
         String summaryMessage = "Name: " + name;
         summaryMessage += "\nAdd whipped cream? " + addWhippedCream;
         summaryMessage += "\nAdd chocolate? " + addChocolate;
@@ -83,16 +95,24 @@ public class MainActivity extends AppCompatActivity {
         summaryMessage += "\nThank you!";
         return summaryMessage;
     }
+
     /**
-     *
      * @return price
-     *
+     * <p>
      * This method is to calculate the price according to formula price = unitPrice * quantity
-     *
      */
-    private int calculatePrice() {
-        return quantity * unitPrice;
+    private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
+        int totalUnitPrice = unitPrice;
+        if (hasWhippedCream) {
+            totalUnitPrice += 1;
+        }
+        if (hasChocolate) {
+            totalUnitPrice += 2;
+        }
+
+        return quantity * totalUnitPrice;
     }
+
     /**
      * This method displays the given quantity value on the screen.
      */
