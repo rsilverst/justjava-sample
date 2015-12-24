@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="initial_quantity">2</string>
+    <string name="customer_name_hint">Nombre</string>
+    <string name="toppings">Cuberturas</string>
+    <string name="whipped_cream">Crema Batida</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity_text">Cantidad</string>
+    <string name="order">Pedido</string>
+    <string name="yes">Si</string>
+    <string name="no">Non</string>
+    <string name="thanks">Gracias!</string>
+    <string name="total">Total</string>
+    <string name="add_whipped">Agregue la crema batida</string>
+    <string name="add_chocolate">Agregue chocolate</string>
+    <string name="name">Nombre</string>
+    <string name="email_subject">Just Java pedido de</string>
+    <string name="min_order_error">Pedido mínimo es uno de café</string>
+    <string name="max_order_error">Para máxima es de 100 café</string>
+</resources>
